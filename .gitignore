@@ -1,0 +1,6 @@
+/build/
+/nbproject/private/
+/temp/
+/lib/ffmpeg.exe
+/lib/ffplay.exe
+/lib/ffprobe.exe
