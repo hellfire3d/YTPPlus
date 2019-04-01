@@ -6,7 +6,6 @@ public class MainApp {
     public static void main(String[] args) {
         YTPGenerator generatorMain = new YTPGenerator("job_" + System.currentTimeMillis() + ".mp4");
         
-        
         generatorMain.setMaxClips(20);
 
         generatorMain.addSource("jim.mp4");
