@@ -4,3 +4,7 @@
 /lib/ffmpeg.exe
 /lib/ffplay.exe
 /lib/ffprobe.exe
+*.mp4
+*.sfk*
+*.bat
+*.txt
