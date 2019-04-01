@@ -6,6 +6,7 @@
 package zone.arctic.ytpplus;
 
 import java.io.File;
+import java.io.FilenameFilter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Random;
@@ -22,20 +23,50 @@ public class EffectsFactory {
     }
     
     public String pickSound() {
-        File[] files = new File(toolBox.SOUNDS).listFiles();
+        FilenameFilter fileFilter = new FilenameFilter() {
+            @Override
+            public boolean accept(File dir, String name) {
+                String lowercase = name.toLowerCase();
+                if (lowercase.endsWith(".mp3")) 
+                    return true;
+                else 
+                    return false;
+            }
+        };
+        File[] files = new File(toolBox.SOUNDS).listFiles(fileFilter);
         Random rand = new Random();
         File file = files[rand.nextInt(files.length)];
         return file.getName();
     }
     public String pickSource() {
-        File[] files = new File(toolBox.SOURCES).listFiles();
+        FilenameFilter fileFilter = new FilenameFilter() {
+            @Override
+            public boolean accept(File dir, String name) {
+                String lowercase = name.toLowerCase();
+                if (lowercase.endsWith(".mp4")) 
+                    return true;
+                else 
+                    return false;
+            }
+        };
+        File[] files = new File(toolBox.SOURCES).listFiles(fileFilter);
         Random rand = new Random();
         File file = files[rand.nextInt(files.length)];
         return file.getName();
     }
     
     public String pickMusic() {
-        File[] files = new File(toolBox.MUSIC).listFiles();
+        FilenameFilter fileFilter = new FilenameFilter() {
+            @Override
+            public boolean accept(File dir, String name) {
+                String lowercase = name.toLowerCase();
+                if (lowercase.endsWith(".mp3")) 
+                    return true;
+                else 
+                    return false;
+            }
+        };
+        File[] files = new File(toolBox.MUSIC).listFiles(fileFilter);
         Random rand = new Random();
         File file = files[rand.nextInt(files.length)];
         return file.getName();
