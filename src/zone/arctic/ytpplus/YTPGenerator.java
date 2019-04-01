@@ -19,6 +19,19 @@ public class YTPGenerator {
     public static String INPUT_FILE; //Input video file
     public static String OUTPUT_FILE; //the video file that will be produced in the end
     
+    public boolean effect1;
+    public boolean effect2;
+    public boolean effect3;
+    public boolean effect4;
+    public boolean effect5;
+    public boolean effect6;
+    public boolean effect7;
+    public boolean effect8;
+    public boolean effect9;
+    public boolean effect10;
+    public boolean effect11;
+    
+    
     public Utilities toolBox = new Utilities();
     
     public void configurate() {
@@ -26,12 +39,24 @@ public class YTPGenerator {
         toolBox.FFMPEG = "ffmpeg";
         toolBox.FFPROBE = "ffprobe";
         toolBox.MAGICK = "magick ";
-        toolBox.TEMP = "D:/Documents/Projects/YTPPlus/temp/" + "job_" + System.currentTimeMillis() + "/";
+        toolBox.TEMP = "temp/" + "job_" + System.currentTimeMillis() + "/";
         new File(toolBox.TEMP).mkdir();
-        toolBox.SOURCES = "D:/Documents/Projects/YTPPlus/sources/";
-        toolBox.SOUNDS = "D:/Documents/Projects/YTPPlus/sounds/";
-        toolBox.MUSIC = "D:/Documents/Projects/YTPPlus/music/";
-        toolBox.RESOURCES = "D:/Documents/Projects/YTPPlus/resources/";
+        toolBox.SOURCES = "sources/";
+        toolBox.SOUNDS = "sounds/";
+        toolBox.MUSIC = "music/";
+        toolBox.RESOURCES = "resources/";
+    
+        effect1=true;
+        effect2=true;
+        effect3=true;
+        effect4=true;
+        effect5=true;
+        effect6=true;
+        effect7=true;
+        effect8=true;
+        effect9=true;
+        effect10=true;
+        effect11=true;
     }
     
     EffectsFactory effectsFactory = new EffectsFactory(toolBox);
@@ -41,21 +66,21 @@ public class YTPGenerator {
     
     public YTPGenerator(String output) {
         this.OUTPUT_FILE = output;
-        configurate();
+        //configurate();
     }
     
     public YTPGenerator(String output, double min, double max) {
         this.OUTPUT_FILE = output;
         this.MIN_STREAM_DURATION = min;
         this.MAX_STREAM_DURATION = max;
-        configurate();
+        //configurate();
     }
     public YTPGenerator(String output, double min, double max, int maxclips) {
         this.OUTPUT_FILE = output;
         this.MIN_STREAM_DURATION = min;
         this.MAX_STREAM_DURATION = max;
         this.MAX_CLIPS = maxclips;
-        configurate();
+        //configurate();
     }
     
     public void setMaxClips(int clips) {
@@ -73,6 +98,14 @@ public class YTPGenerator {
     }
 
     public void go() {
+        System.out.println("My FFMPEG is: " + toolBox.FFMPEG);
+        System.out.println("My FFPROBE is: " + toolBox.FFPROBE);
+        System.out.println("My MAGICK is: " + toolBox.MAGICK);
+        System.out.println("My TEMP is: " + toolBox.TEMP);
+        System.out.println("My SOUNDS is: " + toolBox.SOUNDS);
+        System.out.println("My SOURCES is: " + toolBox.SOURCES);
+        System.out.println("My MUSIC is: " + toolBox.MUSIC);
+        System.out.println("My RESOURCES is: " + toolBox.RESOURCES);
         Thread vidThread = new Thread() {
             public void run() {
                 if (sourceList.isEmpty()) {
@@ -106,51 +139,55 @@ public class YTPGenerator {
                             toolBox.snipVideo(sourceToPick, startOfClip, endOfClip, toolBox.TEMP+"video" + i);
                         }
                         //Add a random effect to the video
-                        int effect = randomInt(0, 20);
+                        int effect = randomInt(0, 22);
                         System.out.println("STARTING EFFECT ON CLIP " + i + " EFFECT" + effect);
                         String clipToWorkWith = toolBox.TEMP+"video" + i + ".mp4";
                         switch (effect) {
                             case 1:
                                 //random sound
+                                if (effect1==true)
                                 effectsFactory.effect_RandomSound(clipToWorkWith);
                                 break;
                             case 2:
-                            case 3:
-                            case 4:
-                            case 5:
+                                if (effect2==true)
                                 //random sound
                                 effectsFactory.effect_RandomSoundMute(clipToWorkWith);
                                 break;
-                            case 6:
-                                //random sound
+                            case 3:
+                                if (effect3==true)
                                 effectsFactory.effect_Reverse(clipToWorkWith);
                                 break;
-                            case 7:
-                            case 8:
-                            case 9:
+                            case 4:
+                                if (effect4==true)
                                 effectsFactory.effect_SpeedUp(clipToWorkWith);
                                 break;
-                            case 10:
-                            //effectsFactory.effect_SlowDown(clipToWorkWith);
-                            //break;
-                            case 11:
+                            case 5:
+                                if (effect5==true)
+                                effectsFactory.effect_SlowDown(clipToWorkWith);
+                                break;
+                            case 6:
+                                if (effect6==true)
                                 effectsFactory.effect_Chorus(clipToWorkWith);
                                 break;
-                            case 12:
-                            case 13:
+                            case 7:
+                                if (effect7==true)
                                 effectsFactory.effect_Vibrato(clipToWorkWith);
                                 break;
-                            //effectsFactory.effect_LowPitch(clipToWorkWith);
-                            //break;
-                            case 14:
-                                //effectsFactory.effect_Dance(clipToWorkWith);
-                                break;
-                            case 15:
-                            case 16:
+                            case 8:
+                                if (effect8==true)
                                 effectsFactory.effect_HighPitch(clipToWorkWith);
                                 break;
-                            case 17:
-                                //effectsFactory.effect_Squidward(clipToWorkWith);
+                            case 9:
+                                if (effect9==true)
+                                effectsFactory.effect_LowPitch(clipToWorkWith);
+                                break;
+                            case 10:
+                                if (effect10==true)
+                                effectsFactory.effect_Dance(clipToWorkWith);
+                                break;
+                            case 11:
+                                if (effect11==true)
+                                effectsFactory.effect_Squidward(clipToWorkWith);
                                 break;
                             default:
                                 break;
