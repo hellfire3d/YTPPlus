@@ -37,7 +37,7 @@ public class Utilities {
                     + " -sexagesimal"
                     + " -show_entries format=duration"
                     + " -of default=noprint_wrappers=1:nokey=1"
-                    + " " + video);
+                    + " \"" + video + "\"");
             BufferedReader stdInput = new BufferedReader(new 
             InputStreamReader(proc.getInputStream()));
             String s;
@@ -45,15 +45,15 @@ public class Utilities {
             while ((s = stdInput.readLine()) != null) {
                 return s;
             }
-        } catch (Exception ex) {System.out.println(ex); return "";}
+        } catch (Exception ex) {ex.printStackTrace(); return "";}
         return "";
     }
     
-    public String getAudioLength(String audio) {
+    public String getLength(String file) {
         try {
             Runtime rt = Runtime.getRuntime();
             Process proc = rt.exec(FFPROBE 
-                    + " -i " + audio
+                    + " -i " + file 
                     + " -show_entries format=duration"
                     + " -v quiet"
                     + " -of csv=\"p=0\"");
@@ -156,25 +156,9 @@ public class Utilities {
             }
             
             //realcount +=1;
-            command1=command1.concat("concat=n=" + realcount + ":v=1:a=1[outv][outa]\" -map \"[outv]\" -map \"[outa]\" " + out); 
+            command1=command1.concat("concat=n=" + realcount + ":v=1:a=1[outv][outa]\" -map \"[outv]\" -map \"[outa]\" -y " + out); 
             System.out.println(command1);
-            //System.exit(0);
-            /*String command1 = FFMPEG 
-                    + " -f concat"
-                    + " -i " + in
-                    //+ " -c copy" 
-                    //+ " -c:v mpeg4"
-                    + " -y"
-                    + " " + temp.getName();
-            
-            String command2 = FFMPEG
-                    + " -i " + temp.getName()
-                    + " -c:v libx264"
-                    + " -crf 28"
-                    + " -preset fast"
-                    + " -ac 1"
-                    + " -y"
-                    + " " + out;*/
+
             CommandLine cmdLine = CommandLine.parse(command1);
             DefaultExecutor executor = new DefaultExecutor();
             int exitValue = executor.execute(cmdLine);

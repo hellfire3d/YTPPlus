@@ -104,7 +104,7 @@ public class EffectsFactory {
         System.out.println(new Object() {}.getClass().getEnclosingMethod().getName() + " initiated");
         try {
             String randomSound = pickSound();
-            String soundLength = toolBox.getAudioLength(toolBox.SOUNDS+randomSound);
+            String soundLength = toolBox.getLength(toolBox.SOUNDS+randomSound);
             System.out.println("Doing a mute now. " + randomSound + " length: " + soundLength + ".");
             //Scanner userInput = new Scanner(System.in);
             //String input = userInput.nextLine();
@@ -424,7 +424,7 @@ public class EffectsFactory {
             
             for (int i=1; i<6; i++) { 
                 String effect = "";
-                int random = randomInt(0,7);
+                int random = randomInt(0,6);
                 switch (random) {
                     case 0: 
                         effect = " -flop";
@@ -447,9 +447,9 @@ public class EffectsFactory {
                     case 6:
                         effect = " -channel RGB -negate";
                         break;
-                    case 7:
-                        effect = " -virtual-pixel Black +distort Cylinder2Plane " + randomInt(1,90);
-                        break;
+                    //case 7:
+                    //    effect = " -virtual-pixel Black +distort Cylinder2Plane " + randomInt(1,90);
+                    //    break;
                 }
                 commands.add(toolBox.MAGICK
                         + " convert " + toolBox.TEMP + "squidward0.png"
