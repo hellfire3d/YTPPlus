@@ -37,7 +37,7 @@ public class TimeStamp {
         
         this.HOURS = (int)hours;
         this.MINUTES = (int)minutes;
-        this.SECONDS = seconds + (millis/1000);
+        this.SECONDS = (int)seconds + (millis/1000);
         
     }
     
