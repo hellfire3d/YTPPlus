@@ -38,8 +38,8 @@ public class YTPGenerator {
         //add some code to load this from a .cfg file later
         toolBox.FFMPEG = "ffmpeg";
         toolBox.FFPROBE = "ffprobe";
-        toolBox.MAGICK = "magick ";
-        toolBox.TEMP = "temp/" + "job_" + System.currentTimeMillis() + "/";
+        toolBox.MAGICK = "magick";
+        toolBox.TEMP = "temp/job_" + System.currentTimeMillis() + "/";
         new File(toolBox.TEMP).mkdir();
         toolBox.SOURCES = "sources/";
         toolBox.SOUNDS = "sounds/";
